@@ -42,7 +42,7 @@ export default function App() {
         To-Do-App
       </Text>
       <Button
-        title="Add New Goal"
+        title="Add New Goal "
         backgroundColor="#4008CA"
         onPress={startAddGoalHanlder}
       />
