@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text, Button, FlatList } from "react-native";
 import { useState } from "react";
+import { StatusBar } from "expo-status-bar";
 import GoalItem from "./component/GoalItem";
 import GoalInput from "./component/GoalInput";
 export default function App() {
@@ -26,50 +27,53 @@ export default function App() {
     });
   }
   return (
-    <View style={styles.appContainer}>
-      <Text
-        style={{
-          paddingTop: 1,
-          alignSelf: "center",
-          color: "white",
-          fontSize: 20,
-          backgroundColor: "#4008CA",
-          padding: 10,
-          borderRadius: 10,
-          marginBottom: 15,
-        }}
-      >
-        To-Do-App
-      </Text>
-      <Button
-        title="Add New Goal "
-        backgroundColor="#4008CA"
-        onPress={startAddGoalHanlder}
-      />
-      <GoalInput
-        visible={modalIsVisible}
-        onAddGoal={addGoalHandler}
-        onCancel={endGoalHandler}
-      />
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={courseGoal}
-          renderItem={(itemData) => {
-            itemData.index;
-            return (
-              <GoalItem
-                text={itemData.item.text}
-                id={itemData.item.id}
-                onDeleteItem={deleteHandler}
-              />
-            );
+    <>
+      <StatusBar style="auto" />
+      <View style={styles.appContainer}>
+        <Text
+          style={{
+            paddingTop: 1,
+            alignSelf: "center",
+            color: "white",
+            fontSize: 20,
+            backgroundColor: "#4008CA",
+            padding: 10,
+            borderRadius: 10,
+            marginBottom: 15,
           }}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
-        ></FlatList>
+        >
+          To-Do-App
+        </Text>
+        <Button
+          title="Add New Goal "
+          backgroundColor="#4008CA"
+          onPress={startAddGoalHanlder}
+        />
+        <GoalInput
+          visible={modalIsVisible}
+          onAddGoal={addGoalHandler}
+          onCancel={endGoalHandler}
+        />
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={courseGoal}
+            renderItem={(itemData) => {
+              itemData.index;
+              return (
+                <GoalItem
+                  text={itemData.item.text}
+                  id={itemData.item.id}
+                  onDeleteItem={deleteHandler}
+                />
+              );
+            }}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+          ></FlatList>
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
